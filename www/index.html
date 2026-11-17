@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>CalmMind — Student Study Companion</title>
+
+  <!-- Ionic Core CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+
+  <!-- Google Fonts: Plus Jakarta Sans + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <ion-app>
+
+    <!-- ==================== LOGIN & REGISTRATION SCREEN ==================== -->
+    <div id="auth-screen" class="auth-wrapper">
+      <div class="auth-glow-orb orb-1"></div>
+      <div class="auth-glow-orb orb-2"></div>
+
+      <div class="auth-container">
+        <div class="auth-brand">
+          <div class="brand-logo-badge">🌿</div>
+          <h1>CalmMind</h1>
+          <p>Mindful Study Planner &amp; Deep Focus Companion</p>
+        </div>
+
+        <ion-card class="auth-card">
+          <ion-card-content>
+            <ion-segment id="auth-mode-segment" value="login" class="custom-segment">
+              <ion-segment-button value="login">
+                <ion-label>Sign In</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="register">
+                <ion-label>Create Account</ion-label>
+              </ion-segment-button>
+            </ion-segment>
+
+            <div id="auth-name-field" class="ion-margin-top" style="display: none;">
+              <ion-item lines="none" class="auth-input-item">
+                <ion-icon slot="start" name="person-outline" class="input-icon"></ion-icon>
+                <ion-input id="auth-name-input" type="text" label="Full Name" label-placement="stacked" placeholder="e.g., Juan Dela Cruz"></ion-input>
+              </ion-item>
+            </div>
+
+            <div class="ion-margin-top">
+              <ion-item lines="none" class="auth-input-item">
+                <ion-icon slot="start" name="at-outline" class="input-icon"></ion-icon>
+                <ion-input id="auth-username-input" type="text" label="Username" label-placement="stacked" placeholder="e.g., student01"></ion-input>
+              </ion-item>
+            </div>
+
+            <div class="ion-margin-top">
+              <ion-item lines="none" class="auth-input-item">
+                <ion-icon slot="start" name="lock-closed-outline" class="input-icon"></ion-icon>
+                <ion-input id="auth-password-input" type="password" label="Password" label-placement="stacked" placeholder="Minimum 6 characters"></ion-input>
+              </ion-item>
+            </div>
+
+            <div id="auth-confirm-field" class="ion-margin-top" style="display: none;">
+              <ion-item lines="none" class="auth-input-item">
+                <ion-icon slot="start" name="shield-checkmark-outline" class="input-icon"></ion-icon>
+                <ion-input id="auth-confirm-input" type="password" label="Confirm Password" label-placement="stacked" placeholder="Re-enter your password"></ion-input>
+              </ion-item>
+            </div>
+
+            <p id="auth-feedback-msg" class="auth-feedback-text"></p>
+
+            <ion-button id="auth-submit-btn" expand="block" size="large" color="primary" class="primary-cta-btn ion-margin-top">
+              Sign In
+            </ion-button>
+
+            <div class="auth-divider">
+              <span>or</span>
+            </div>
+
+            <ion-button id="guest-mode-btn" expand="block" fill="outline" size="default" color="primary" class="guest-cta-btn">
+              <ion-icon slot="start" name="leaf-outline"></ion-icon>
+              Continue Offline (Local Storage)
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+
+    <!-- ==================== MAIN APPLICATION SHELL ==================== -->
+    <ion-tabs id="main-tabs" style="display: none;">
+
+      <!-- TAB 1: DASHBOARD -->
+      <ion-tab tab="dashboard">
+        <ion-header class="ion-no-border">
+          <ion-toolbar class="app-header-toolbar">
+            <ion-title>
+              <div class="header-brand-title">
+                <span class="header-leaf">🌿</span>
+                <span>CalmMind</span>
+              </div>
+            </ion-title>
+            <ion-buttons slot="end">
+              <ion-button id="header-sync-btn" fill="clear" class="header-icon-btn" title="Sync to MySQL">
+                <ion-icon slot="icon-only" name="cloud-done-outline"></ion-icon>
+              </ion-button>
+              <ion-button id="header-logout-btn" fill="clear" class="header-icon-btn" title="Sign Out">
+                <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+
+        <ion-content class="ion-padding">
+          <div class="responsive-shell">
+            <!-- Hero Banner -->
+            <ion-card class="hero-card">
+              <div class="hero-pattern"></div>
+              <ion-card-header>
+                <div class="hero-top-pill">DAILY SANCTUARY</div>
+                <ion-card-subtitle id="welcome-user-label">Welcome back, Student</ion-card-subtitle>
+                <ion-card-title>Today's Study Progress</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <div class="progress-header-row">
+                  <span id="today-progress-text">0/0 completed today</span>
+                  <span class="progress-pill-badge" id="today-progress-percent">0%</span>
+                </div>
+                <ion-progress-bar id="today-progress-bar" value="0" class="hero-progress-bar"></ion-progress-bar>
+                <div class="hero-footer-row">
+                  <span id="today-focus-summary">Focus logged today: 0 mins</span>
+                  <span class="hero-status-dot">● Active</span>
+                </div>
+              </ion-card-content>
+            </ion-card>
+
+            <!-- KPI Stats Grid -->
+            <div class="stats-grid">
+              <ion-card class="stat-box">
+                <ion-card-content>
+                  <div class="stat-icon-circle">📅</div>
+                  <div class="stat-value" id="stat-upcoming-exams">0</div>
+                  <div class="stat-label">Upcoming Exams</div>
+                  <div class="stat-meta" id="stat-next-exam-name">None scheduled</div>
+                </ion-card-content>
+              </ion-card>
+
+              <ion-card class="stat-box">
+                <ion-card-content>
+                  <div class="stat-icon-circle">🔥</div>
+                  <div class="stat-value" id="stat-streak-days">0 🔥</div>
+                  <div class="stat-label">Study Streak</div>
+                  <div class="stat-meta" id="stat-total-points">0 Calm Points</div>
+                </ion-card-content>
+              </ion-card>
+            </div>
+
+            <!-- Responsive Two-Column Content Grid -->
+            <div class="dashboard-columns">
+              <ion-card class="elevated-card">
+                <ion-card-header>
+                  <div class="card-title-row">
+                    <span class="card-title-icon">🎯</span>
+                    <ion-card-title>Next Active Exam</ion-card-title>
+                  </div>
+                </ion-card-header>
+                <ion-card-content id="dashboard-next-exam-card">
+                  <p class="empty-state">No active exams. Add one in the Planner tab!</p>
+                </ion-card-content>
+              </ion-card>
+
+              <ion-card class="elevated-card">
+                <ion-card-header>
+                  <div class="card-title-row">
+                    <span class="card-title-icon">✅</span>
+                    <ion-card-title>Today's Study Tasks</ion-card-title>
+                  </div>
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-list id="dashboard-today-tasks" lines="none" class="clean-list"></ion-list>
+                </ion-card-content>
+              </ion-card>
+            </div>
+          </div>
+        </ion-content>
+      </ion-tab>
+
+      <!-- TAB 2: STUDY PLANNER -->
+      <ion-tab tab="planner">
+        <ion-header class="ion-no-border">
+          <ion-toolbar class="app-header-toolbar">
+            <ion-title>
+              <div class="header-brand-title">
+                <span class="header-leaf">🗓️</span>
+                <span>Study Planner</span>
+              </div>
+            </ion-title>
+          </ion-toolbar>
+        </ion-header>
+
+        <ion-content class="ion-padding">
+          <div class="responsive-shell">
+            <div class="planner-forms-grid">
+              <ion-card class="elevated-card">
+                <ion-card-header>
+                  <div class="card-title-row">
+                    <span class="card-title-icon">📚</span>
+                    <ion-card-title>Schedule an Exam</ion-card-title>
+                  </div>
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-item lines="none" class="styled-form-item">
+                    <ion-input id="exam-subject-input" label="Subject / Course" label-placement="stacked" placeholder="e.g., Web & Mobile Dev"></ion-input>
+                  </ion-item>
+                  <ion-item lines="none" class="styled-form-item ion-margin-top">
+                    <ion-input id="exam-title-input" label="Exam Topic" label-placement="stacked" placeholder="e.g., Midterm Practical"></ion-input>
+                  </ion-item>
+                  <ion-item lines="none" class="styled-form-item ion-margin-top">
+                    <ion-input id="exam-date-input" type="date" label="Exam Date" label-placement="stacked"></ion-input>
+                  </ion-item>
+                  <ion-button id="add-exam-btn" expand="block" color="primary" class="primary-cta-btn ion-margin-top">
+                    <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+                    Add Exam &amp; Study Task
+                  </ion-button>
+                </ion-card-content>
+              </ion-card>
+
+              <ion-card class="elevated-card">
+                <ion-card-header>
+                  <div class="card-title-row">
+                    <span class="card-title-icon">✍️</span>
+                    <ion-card-title>Add Study Task</ion-card-title>
+                  </div>
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-item lines="none" class="styled-form-item">
+                    <ion-input id="task-title-input" label="Task Description" label-placement="stacked" placeholder="e.g., Review PHP PDO queries"></ion-input>
+                  </ion-item>
+                  <ion-item lines="none" class="styled-form-item ion-margin-top">
+                    <ion-input id="task-date-input" type="date" label="Target Date" label-placement="stacked"></ion-input>
+                  </ion-item>
+                  <ion-button id="add-task-btn" expand="block" fill="outline" color="primary" class="secondary-cta-btn ion-margin-top">
+                    <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
+                    Add Task
+                  </ion-button>
+                </ion-card-content>
+              </ion-card>
+            </div>
+
+            <div class="planner-lists-grid">
+              <div>
+                <div class="section-heading">
+                  <h3>Active Exams</h3>
+                  <span class="count-pill" id="active-exams-count">0</span>
+                </div>
+                <div id="active-exams-list"></div>
+
+                <div class="section-heading">
+                  <h3>Completed Exams</h3>
+                  <span class="count-pill completed" id="completed-exams-count">0</span>
+                </div>
+                <div id="completed-exams-list"></div>
+              </div>
+
+              <div>
+                <div class="section-heading">
+                  <h3>Study Checklist</h3>
+                </div>
+                <ion-card class="elevated-card">
+                  <ion-card-content>
+                    <ion-list id="all-tasks-list" lines="none" class="clean-list"></ion-list>
+                  </ion-card-content>
+                </ion-card>
+              </div>
+            </div>
+          </div>
+        </ion-content>
+      </ion-tab>
+
+      <!-- TAB 3: POMODORO FOCUS TIMER -->
+      <ion-tab tab="timer">
+        <ion-header class="ion-no-border">
+          <ion-toolbar class="app-header-toolbar">
+            <ion-title>
+              <div class="header-brand-title">
+                <span class="header-leaf">⏱️</span>
+                <span>Focus Timer</span>
+              </div>
+            </ion-title>
+          </ion-toolbar>
+        </ion-header>
+
+        <ion-content class="ion-padding ion-text-center">
+          <div class="responsive-shell timer-shell">
+            <ion-card class="timer-card elevated-card">
+              <ion-card-header>
+                <div class="timer-badge-pill">POMODORO SANCTUARY</div>
+                <ion-card-title id="timer-status-label">Ready to Focus</ion-card-title>
+              </ion-card-header>
+
+              <ion-card-content>
+                <ion-segment id="timer-preset-segment" value="25" class="custom-segment">
+                  <ion-segment-button value="15">
+                    <ion-label>15 Min</ion-label>
+                  </ion-segment-button>
+                  <ion-segment-button value="25">
+                    <ion-label>25 Min</ion-label>
+                  </ion-segment-button>
+                  <ion-segment-button value="45">
+                    <ion-label>45 Min</ion-label>
+                  </ion-segment-button>
+                </ion-segment>
+
+                <div class="timer-ring-outer">
+                  <div class="timer-circle">
+                    <div id="timer-display">25:00</div>
+                    <div id="timer-preset-caption">25 minute session</div>
+                  </div>
+                </div>
+
+                <div class="timer-controls">
+                  <ion-button id="timer-start-pause-btn" size="large" color="primary" class="primary-cta-btn">
+                    <ion-icon slot="start" name="play-outline"></ion-icon>
+                    Start Focus
+                  </ion-button>
+                  <ion-button id="timer-reset-btn" size="large" fill="outline" color="medium" class="secondary-cta-btn">
+                    <ion-icon slot="start" name="refresh-outline"></ion-icon>
+                    Reset
+                  </ion-button>
+                </div>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </ion-content>
+      </ion-tab>
+
+      <!-- TAB 4: WELLNESS & ACCOUNT -->
+      <ion-tab tab="wellness">
+        <ion-header class="ion-no-border">
+          <ion-toolbar class="app-header-toolbar">
+            <ion-title>
+              <div class="header-brand-title">
+                <span class="header-leaf">💚</span>
+                <span>Wellness &amp; Account</span>
+              </div>
+            </ion-title>
+          </ion-toolbar>
+        </ion-header>
+
+        <ion-content class="ion-padding">
+          <div class="responsive-shell">
+            <div class="wellness-grid">
+              <ion-card class="elevated-card">
+                <ion-card-header>
+                  <div class="card-title-row">
+                    <span class="card-title-icon">🧘</span>
+                    <ion-card-title>Quick Stress Check-In</ion-card-title>
+                  </div>
+                  <ion-card-subtitle>How is your mind feeling right now?</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+                  <div class="mood-row">
+                    <ion-button class="mood-btn" data-mood="Calm & Focused" fill="outline" color="primary">😌 Calm</ion-button>
+                    <ion-button class="mood-btn" data-mood="Slightly Stressed" fill="outline" color="primary">😐 Okay</ion-button>
+                    <ion-button class="mood-btn" data-mood="Overwhelmed" fill="outline" color="primary">😰 Stressed</ion-button>
+                  </div>
+                  <p id="mood-feedback" class="ion-margin-top empty-state">Log a check-in to earn +10 Calm Points.</p>
+                </ion-card-content>
+              </ion-card>
+
+              <ion-card class="elevated-card">
+                <ion-card-header>
+                  <div class="card-title-row">
+                    <span class="card-title-icon">🏅</span>
+                    <ion-card-title>Achievements</ion-card-title>
+                  </div>
+                </ion-card-header>
+                <ion-card-content>
+                  <div id="badges-grid" class="badges-grid"></div>
+                </ion-card-content>
+              </ion-card>
+
+              <ion-card class="elevated-card">
+                <ion-card-header>
+                  <div class="card-title-row">
+                    <span class="card-title-icon">🗄️</span>
+                    <ion-card-title>MySQL Account Sync</ion-card-title>
+                  </div>
+                  <ion-card-subtitle id="account-user-label">Offline Guest Mode</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+                  <div class="sync-status-box">
+                    <span class="sync-dot"></span>
+                    <p id="cloud-sync-status" class="sync-status-text">Ready.</p>
+                  </div>
+                  <ion-button id="manual-cloud-sync-btn" expand="block" color="primary" class="primary-cta-btn ion-margin-top">
+                    <ion-icon slot="start" name="sync-outline"></ion-icon>
+                    Sync to MySQL Now
+                  </ion-button>
+                  <ion-button id="account-logout-btn" expand="block" fill="outline" color="danger" class="secondary-cta-btn ion-margin-top">
+                    <ion-icon slot="start" name="log-out-outline"></ion-icon>
+                    Sign Out
+                  </ion-button>
+                </ion-card-content>
+              </ion-card>
+
+              <ion-card class="elevated-card">
+                <ion-card-header>
+                  <div class="card-title-row">
+                    <span class="card-title-icon">💾</span>
+                    <ion-card-title>Local JSON Backup</ion-card-title>
+                  </div>
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-button id="export-json-btn" expand="block" fill="outline" color="primary" class="secondary-cta-btn">Export JSON Backup</ion-button>
+                  <input type="file" id="import-json-file" accept=".json" hidden />
+                  <ion-button id="import-json-btn" expand="block" fill="clear" color="primary" class="ion-margin-top">Import JSON Backup</ion-button>
+                </ion-card-content>
+              </ion-card>
+            </div>
+          </div>
+        </ion-content>
+      </ion-tab>
+
+      <!-- Bottom Floating Tab Bar -->
+      <ion-tab-bar slot="bottom" class="floating-tab-bar">
+        <ion-tab-button tab="dashboard">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-label>Dashboard</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="planner">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <ion-label>Planner</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="timer">
+          <ion-icon name="timer-outline"></ion-icon>
+          <ion-label>Focus</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="wellness">
+          <ion-icon name="heart-outline"></ion-icon>
+          <ion-label>Wellness</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+
+    </ion-tabs>
+  </ion-app>
+
+  <script src="app.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,739 @@
+:root {
+  /* Botanical Emerald & Sage Palette */
+  --ion-color-primary: #15803d;
+  --ion-color-primary-rgb: 21, 128, 61;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #116932;
+  --ion-color-primary-tint: #22964c;
+
+  --ion-color-secondary: #0d9488;
+  --ion-color-secondary-rgb: 13, 148, 136;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #0b8278;
+  --ion-color-secondary-tint: #259f94;
+
+  --ion-color-success: #16a34a;
+  --ion-color-success-rgb: 22, 163, 74;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+
+  --calm-bg: #eef7f2;
+  --calm-bg-accent: #e2f2e9;
+  --calm-surface: #ffffff;
+  --calm-mint-soft: #ecfdf5;
+  --calm-mint-mid: #d1fae5;
+  --calm-mint-border: #a7f3d0;
+  --calm-text-dark: #0f291e;
+  --calm-text-muted: #4b695b;
+  --calm-shadow-sm: 0 4px 14px rgba(15, 65, 38, 0.05);
+  --calm-shadow-md: 0 10px 28px rgba(15, 65, 38, 0.08);
+  --calm-shadow-hero: 0 14px 32px rgba(16, 102, 54, 0.24);
+
+  --ion-font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--ion-font-family);
+  background: var(--calm-bg);
+  color: var(--calm-text-dark);
+}
+
+h1, h2, h3, h4, ion-card-title {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+ion-content {
+  --background: radial-gradient(circle at top right, #e3f5eb 0%, #eef7f2 45%, #f5faf7 100%);
+}
+
+/* ==================== HEADER TOOLBAR ==================== */
+.app-header-toolbar {
+  --background: rgba(255, 255, 255, 0.88);
+  --color: #14532d;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(167, 243, 208, 0.65);
+}
+
+.header-brand-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: #14532d;
+}
+
+.header-leaf {
+  font-size: 1.25rem;
+}
+
+.header-icon-btn {
+  --color: #15803d;
+  --border-radius: 12px;
+}
+
+/* ==================== RESPONSIVE CONTAINER SHELL ==================== */
+.responsive-shell {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-bottom: 32px;
+}
+
+.timer-shell {
+  max-width: 600px;
+}
+
+/* ==================== AUTH SCREEN (GLASSMORPHIC BOTANICAL GREEN) ==================== */
+.auth-wrapper {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #053e2f 0%, #0f6838 48%, #0d9488 100%);
+  padding: clamp(18px, 4vw, 36px);
+  overflow: hidden;
+}
+
+.auth-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.orb-1 {
+  width: 340px;
+  height: 340px;
+  background: #34d399;
+  top: -80px;
+  left: -60px;
+}
+
+.orb-2 {
+  width: 320px;
+  height: 320px;
+  background: #2dd4bf;
+  bottom: -90px;
+  right: -60px;
+}
+
+.auth-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 440px;
+}
+
+.auth-brand {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 22px;
+}
+
+.brand-logo-badge {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 12px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.1rem;
+  box-shadow: 0 10px 24px rgba(4, 47, 36, 0.25);
+}
+
+.auth-brand h1 {
+  margin: 0;
+  font-size: clamp(1.75rem, 4.5vw, 2.15rem);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.auth-brand p {
+  margin: 6px 0 0;
+  font-size: 0.92rem;
+  color: #d1fae5;
+}
+
+.auth-card {
+  border-radius: 26px;
+  box-shadow: 0 22px 48px rgba(4, 47, 36, 0.34);
+  margin: 0;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.custom-segment {
+  --background: #e8f5ee;
+  border-radius: 14px;
+  padding: 4px;
+}
+
+.custom-segment ion-segment-button {
+  --indicator-color: #ffffff;
+  --color: #3f6251;
+  --color-checked: #15803d;
+  --border-radius: 11px;
+  font-weight: 600;
+  min-height: 38px;
+}
+
+.auth-input-item,
+.styled-form-item {
+  --border-radius: 14px;
+  --background: #f3faf6;
+  --padding-start: 14px;
+  --inner-padding-end: 14px;
+  border: 1.5px solid #d5eee0;
+  border-radius: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-input-item:focus-within,
+.styled-form-item:focus-within {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.14);
+}
+
+.input-icon {
+  color: #16a34a;
+  font-size: 1.15rem;
+  margin-right: 10px;
+}
+
+.auth-feedback-text {
+  color: #dc2626;
+  font-size: 0.84rem;
+  font-weight: 500;
+  min-height: 20px;
+  margin: 10px 4px 0;
+  text-align: center;
+}
+
+.auth-feedback-text.success {
+  color: #15803d;
+}
+
+.primary-cta-btn {
+  --border-radius: 14px;
+  --box-shadow: 0 8px 20px rgba(21, 128, 61, 0.26);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.secondary-cta-btn {
+  --border-radius: 14px;
+  font-weight: 600;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 16px 0 12px;
+  color: #7c9689;
+  font-size: 0.8rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #dceee4;
+}
+
+.auth-divider span {
+  padding: 0 12px;
+}
+
+.guest-cta-btn {
+  --border-radius: 14px;
+  font-weight: 600;
+  font-size: 0.86rem;
+}
+
+/* ==================== CARDS & HERO BANNER ==================== */
+ion-card {
+  border-radius: 22px;
+  margin-inline: 0;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.elevated-card {
+  background: var(--calm-surface);
+  border: 1px solid rgba(187, 247, 208, 0.75);
+  box-shadow: var(--calm-shadow-md);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-title-icon {
+  font-size: 1.2rem;
+}
+
+.elevated-card ion-card-title {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #14532d;
+}
+
+.hero-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #065f46 0%, #15803d 55%, #0d9488 100%);
+  color: #ffffff;
+  box-shadow: var(--calm-shadow-hero);
+  border: none;
+}
+
+.hero-pattern {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-top-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  color: #ecfdf5;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.hero-card ion-card-subtitle {
+  color: #d1fae5;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.hero-card ion-card-title {
+  color: #ffffff;
+  font-size: clamp(1.3rem, 3.5vw, 1.65rem);
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+.progress-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 0.94rem;
+  color: #ecfdf5;
+}
+
+.progress-pill-badge {
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.hero-progress-bar {
+  height: 10px;
+  border-radius: 999px;
+  --background: rgba(255, 255, 255, 0.24);
+  --progress-background: #a7f3d0;
+}
+
+.hero-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  font-size: 0.84rem;
+  color: #d1fae5;
+}
+
+.hero-status-dot {
+  color: #a7f3d0;
+  font-weight: 600;
+}
+
+/* ==================== RESPONSIVE GRIDS ==================== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.stat-box {
+  margin: 0;
+  text-align: center;
+  background: var(--calm-surface);
+  border: 1px solid #ccf5de;
+  box-shadow: var(--calm-shadow-sm);
+}
+
+.stat-icon-circle {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 8px;
+  border-radius: 12px;
+  background: var(--calm-mint-soft);
+  border: 1px solid var(--calm-mint-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.stat-value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.45rem, 4vw, 1.9rem);
+  font-weight: 800;
+  color: #14532d;
+}
+
+.stat-label {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--calm-text-dark);
+  margin-top: 2px;
+}
+
+.stat-meta {
+  font-size: 0.76rem;
+  color: var(--calm-text-muted);
+  margin-top: 4px;
+  word-break: break-word;
+}
+
+.dashboard-columns,
+.planner-forms-grid,
+.planner-lists-grid,
+.wellness-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* Tablet & Desktop Breakpoints */
+@media (min-width: 768px) {
+  .stats-grid {
+    gap: 18px;
+  }
+
+  .dashboard-columns,
+  .planner-forms-grid,
+  .planner-lists-grid,
+  .wellness-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+@media (min-width: 1024px) {
+  ion-content {
+    --padding-start: 32px;
+    --padding-end: 32px;
+    --padding-top: 22px;
+  }
+
+  .floating-tab-bar {
+    max-width: 680px;
+    margin: 0 auto 14px;
+    border-radius: 20px;
+    border: 1px solid #bbf7d0;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 28px rgba(15, 65, 38, 0.12);
+    padding: 4px 8px;
+  }
+}
+
+/* ==================== PLANNER, EXAMS & CHECKLIST ==================== */
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 4px 10px;
+}
+
+.section-heading h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #14532d;
+  margin: 0;
+}
+
+.count-pill {
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+
+.count-pill.completed {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.exam-card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.exam-info {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+.exam-info h4 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--calm-text-dark);
+  word-wrap: break-word;
+}
+
+.exam-info p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--calm-text-muted);
+}
+
+.exam-completed-card {
+  opacity: 0.82;
+  background: #f7fbf9;
+  border: 1px dashed #cbd5e1;
+}
+
+.exam-completed-card h4 {
+  text-decoration: line-through;
+  color: #6b7f74;
+}
+
+.exam-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.clean-list {
+  background: transparent;
+  padding: 0;
+}
+
+.clean-list ion-item {
+  --background: #f7fbf9;
+  --border-radius: 14px;
+  margin-bottom: 8px;
+  border: 1px solid #e1f3e8;
+}
+
+.clean-list ion-item:last-child {
+  margin-bottom: 0;
+}
+
+.task-done-text {
+  text-decoration: line-through;
+  color: #8fa398;
+}
+
+.empty-state {
+  color: var(--calm-text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 14px 0;
+  margin: 0;
+}
+
+/* ==================== POMODORO TIMER ==================== */
+.timer-card {
+  padding-bottom: 18px;
+}
+
+.timer-badge-pill {
+  display: inline-block;
+  margin: 0 auto 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.timer-ring-outer {
+  width: clamp(216px, 58vw, 272px);
+  height: clamp(216px, 58vw, 272px);
+  margin: 26px auto;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #dcfce7, #ccfbf1);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 30px rgba(21, 128, 61, 0.14);
+}
+
+.timer-circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 4px 14px rgba(21, 128, 61, 0.08);
+}
+
+#timer-display {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2.5rem, 8.5vw, 3.4rem);
+  font-weight: 800;
+  color: #15803d;
+  font-variant-numeric: tabular-nums;
+}
+
+#timer-preset-caption {
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--calm-text-muted);
+  margin-top: 4px;
+}
+
+.timer-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ==================== WELLNESS & BADGES ==================== */
+.mood-row {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.mood-btn {
+  flex: 1 1 95px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  --border-radius: 14px;
+}
+
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@media (min-width: 480px) {
+  .badges-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.badge-item {
+  padding: 14px 8px;
+  border-radius: 16px;
+  border: 1px solid #e2ece6;
+  background: #f7fbf9;
+  text-align: center;
+  opacity: 0.5;
+  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+}
+
+.badge-item.unlocked {
+  opacity: 1;
+  border-color: #6ee7b7;
+  background: linear-gradient(145deg, #ecfdf5 0%, #f0fdfa 100%);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12);
+}
+
+.badge-icon {
+  font-size: 1.6rem;
+}
+
+.badge-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-top: 6px;
+  color: var(--calm-text-dark);
+}
+
+.sync-status-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #f3faf6;
+  border: 1px solid #d5eee0;
+}
+
+.sync-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #16a34a;
+  flex-shrink: 0;
+}
+
+.sync-status-text {
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--calm-text-muted);
+  margin: 0;
+}
+/* Fix stray layout artifacts */
+ion-tab-bar {
+  contain: layout paint style;
+}
+/* Small mobile screen adjustments (<= 360px) */
+@media (max-width: 360px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timer-controls ion-button {
+    width: 100%;
+  }
+}
